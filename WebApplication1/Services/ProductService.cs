@@ -8,6 +8,8 @@ namespace WebApplication1.Services
     public class ProductService : IProductService
     {
         private readonly IProductRepository _repository;      // depends on the abstraction
+        internal object service;
+
         public ProductService(IProductRepository repository) => _repository = repository;
 
         public async Task<IEnumerable<ProductDto>> GetAllAsync()
@@ -33,6 +35,21 @@ namespace WebApplication1.Services
             var entity = new Product { Name = input.Name, Price = input.Price, StockQuantity = input.StockQuantity };
             var saved = await _repository.AddAsync(entity);
             return new ProductDto(saved.Id, saved.Name, saved.Price, saved.StockQuantity);
+        }
+
+        public Task<IEnumerable<ProductDto>> GetAllAsync(object id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public object? CreateAsync(Product product)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task GetByIdAsync(object id)
+        {
+            throw new NotImplementedException();
         }
     }
 }
